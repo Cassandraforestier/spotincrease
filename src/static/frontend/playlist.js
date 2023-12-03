@@ -10,9 +10,9 @@ class Playlist extends HTMLElement {
 
   connectedCallback() {
     this.render();
-  
+
     this.playlistElement = this.shadow.getElementById("playlist");
-  
+
     this.loadPlaylist();
   }
 
@@ -30,7 +30,6 @@ class Playlist extends HTMLElement {
       const listItem = document.createElement("li");
       listItem.textContent = `Song ${index + 1}`;
       listItem.addEventListener("click", () => {
-        console.log("IC !")
         this.dispatchEvent(
           new CustomEvent("loadTrack", {
             detail: {

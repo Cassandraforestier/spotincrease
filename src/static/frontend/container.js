@@ -2,12 +2,13 @@ class Container extends HTMLElement {
   currentTrack;
   containerRef;
   playerRef;
+  equalizerRef;
 
   constructor() {
     super();
 
     this.shadow = this.attachShadow(
-      { mode: "open" } // Set mode to "open", to have access to
+      { mode: "open" }
     );
   }
 
@@ -15,13 +16,17 @@ class Container extends HTMLElement {
     this.render();
     this.containerRef = this.shadow.querySelector('#container');
     this.playerRef = this.shadow.querySelector('app-player');
-    this.setupListeners()
+
+    this.setupListeners();
   }
 
   setupListeners() {
     this.containerRef.addEventListener("loadTrack", (e) => {
-      this.playerRef.track = e.detail.track;
+      // appelle le setter de player qui va mettre à jour le titre et lancer la lecture
+      // this.playerRef.track = e.detail.track;
+      this.playerRef.setTrack(e.detail.track);
     });
+
   }
 
   render() {
