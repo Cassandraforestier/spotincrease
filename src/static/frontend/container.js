@@ -7,15 +7,13 @@ class Container extends HTMLElement {
   constructor() {
     super();
 
-    this.shadow = this.attachShadow(
-      { mode: "open" }
-    );
+    this.shadow = this.attachShadow({ mode: "open" });
   }
 
   connectedCallback() {
     this.render();
-    this.containerRef = this.shadow.querySelector('#container');
-    this.playerRef = this.shadow.querySelector('app-player');
+    this.containerRef = this.shadow.querySelector("#container");
+    this.playerRef = this.shadow.querySelector("app-player");
 
     this.setupListeners();
   }
@@ -23,10 +21,8 @@ class Container extends HTMLElement {
   setupListeners() {
     this.containerRef.addEventListener("loadTrack", (e) => {
       // appelle le setter de player qui va mettre à jour le titre et lancer la lecture
-      // this.playerRef.track = e.detail.track;
       this.playerRef.setTrack(e.detail.track);
     });
-
   }
 
   render() {

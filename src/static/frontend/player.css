@@ -1,3 +1,63 @@
 :host {
-  color: white
+  color: white;
+}
+#player {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: #be8fe8;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+}
+#currentTrack {
+  padding-left: 2em;
+  display: flex;
+  align-items: center;
+  padding-top: 1em;
+}
+
+#currentTrack img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1em;
+}
+audio {
+  width: 100%;
+}
+audio::-webkit-media-controls-panel {
+  background-color: #be8fe8;
+}
+/* Styles personnalisés pour les boutons et la timeline */
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button,
+audio::-webkit-media-controls-timeline {
+  color: white;
+}
+
+/* Style pour le temps */
+/* audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: white;
+} */
+
+/* Style pour le volume */
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-volume-slider-container {
+  color: white;
+}
+
+/* Style pour la barre de progression (timeline) */
+/* audio::-webkit-media-controls-timeline {
+  background-color: white;
+  border-radius: 0; /* Supprimer le border-radius */
+
+/* Style pour les boutons en état désactivé (comme le bouton de volume lorsque muet) */
+audio::-webkit-media-controls-mute-button:disabled,
+audio::-webkit-media-controls-volume-slider-container:disabled {
+  color: white;
 }
