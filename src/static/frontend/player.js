@@ -12,10 +12,8 @@ class Player extends HTMLElement {
     this.currentTrack = this.shadow.querySelector("#currentTrack");
     this.equalizerRef = this.shadow.querySelector("app-equalizer");
     this.playerRef = this.shadow.querySelector("#player");
-    this.canvas = this.shadow.querySelector("#canvas");
-    this.playerRef.addEventListener("balanceChange", (e) => {
-      this.handleBalanceChange(e);
-    });
+    this.visualizer = this.shadow.querySelector("app-visualizer");
+    console.log("canvas", this.visualizer);
   }
 
   setTrack(track) {
@@ -39,6 +37,7 @@ class Player extends HTMLElement {
       this.panNode.pan.value = 0;
       this.audio.balance = 0;
     }
+
     this.play();
   }
 
@@ -53,36 +52,15 @@ class Player extends HTMLElement {
         this.audio
       );
     }
-    this.visualizer = butterchurn.default.createVisualizer(
-      this.audioContext,
-      this.canvas,
-      {
-        width: 800,
-        height: 600,
-      }
-    );
-
-    const presets = butterchurnPresets.getPresets();
-    const preset =
-      presets["Flexi, martin + geiss - dedicated to the sherwin maxawow"];
-
-    this.visualizer.loadPreset(preset, 0.0);
-
-    this.startRenderer();
 
     // Create a stereo panner
     this.panNode = new StereoPannerNode(this.audioContext);
 
     this.audioElement.connect(this.panNode);
     this.panNode.connect(this.audioContext.destination);
-    this.visualizer.connectAudio(this.panNode);
+
+    this.visualizer.playVisualizer(this.audioContext, this.panNode);
     this.audio.play();
-  }
-  startRenderer() {
-    requestAnimationFrame(() => {
-      this.startRenderer();
-    });
-    this.visualizer.render();
   }
 
   stop() {
@@ -104,7 +82,6 @@ class Player extends HTMLElement {
           <div id="currentTrack">Aucune musique sélectionnée</div>
         </div>
         <div id="visualizer">
-          <canvas id="canvas"  width='800' height='600'></canvas>
           <app-visualizer></app-visualizer>
           <app-equalizer></app-equalizer>
         </div>
