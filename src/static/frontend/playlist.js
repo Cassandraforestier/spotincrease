@@ -26,10 +26,10 @@ class Playlist extends HTMLElement {
       "musics/aggressive-metal-sinister.mp3",
       "musics/frantic.mp3",
     ];
-
+    let activeListItem = null;
     this.playlist.forEach((track, index) => {
       const listItem = document.createElement("li");
-      // Créez l'élément img avec le chemin de l'image
+      // Création élément img avec le chemin de l'image
       const imgElement = document.createElement("img");
       imgElement.src = "images/music-150x150.png";
       imgElement.alt = "Music Image";
@@ -44,13 +44,16 @@ class Playlist extends HTMLElement {
       listItem.textContent = trackName;
       listItem.appendChild(imgElement); // Ajoutez l'élément img à li
       listItem.addEventListener("click", () => {
-        // Retirez la classe 'active' de tous les éléments li
-        // this.playlistElement.querySelector("li").forEach((item) => {
-        //   item.classList.remove("active");
-        // });
+        if (activeListItem) {
+          // Si un élément est déjà actif, supprimez la classe 'active'
+          activeListItem.classList.remove("active");
+        }
 
-        // Ajoutez la classe 'active' à l'élément cliqué
+        // Ajoute la classe 'active' à l'élément cliqué
         listItem.classList.add("active");
+
+        // Mettre à jour la référence de l'élément actif
+        activeListItem = listItem;
 
         this.dispatchEvent(
           new CustomEvent("loadTrack", {

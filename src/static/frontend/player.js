@@ -13,12 +13,15 @@ class Player extends HTMLElement {
     this.equalizerRef = this.shadow.querySelector("app-equalizer");
     this.playerRef = this.shadow.querySelector("#player");
     this.visualizer = this.shadow.querySelector("app-visualizer");
-    console.log("canvas", this.visualizer);
+
+
+
+    this.equalizerRef.addEventListener("equalizerChange", this.handleEqualizerChange.bind(this));
+    this.equalizerRef.addEventListener("balanceChange", this.handleBalanceChange.bind(this));
   }
 
   setTrack(track) {
-    console.log("setTrack", track);
-    // Créez l'élément img avec le chemin de l'image
+    // création de l'élément img avec le chemin de l'image
     const imgElement = document.createElement("img");
     imgElement.src = "images/music-150x150.png";
     imgElement.alt = "Music Image";
@@ -51,15 +54,33 @@ class Player extends HTMLElement {
       this.audioElement = this.audioContext.createMediaElementSource(
         this.audio
       );
+
+      // Créer des filtres d'égalisation
+      this.bassFilter = this.audioContext.createBiquadFilter();
+      this.bassFilter.type = "lowshelf";
+      this.bassFilter.frequency.value = 200;
+
+      this.midFilter = this.audioContext.createBiquadFilter();
+      this.midFilter.type = "peaking";
+      this.midFilter.frequency.value = 1300;
+      this.trebleFilter = this.audioContext.createBiquadFilter();
+      this.trebleFilter.type = "highshelf";
+      this.trebleFilter.frequency.value = 2600;
+
+      // Connecter les filtres d'égalisation à la destination audio
+      this.bassFilter.connect(this.audioContext.destination);
+      this.midFilter.connect(this.audioContext.destination);
+      this.trebleFilter.connect(this.audioContext.destination);
+
+      // Connecter les filtres aux médias audio
+      this.audioElement.connect(this.bassFilter);
+      this.bassFilter.connect(this.midFilter);
+      this.midFilter.connect(this.trebleFilter);
+      this.trebleFilter.connect(this.audioContext.destination);
+
+      this.visualizer.playVisualizer(this.audioContext, this.trebleFilter);
     }
 
-    // Create a stereo panner
-    this.panNode = new StereoPannerNode(this.audioContext);
-
-    this.audioElement.connect(this.panNode);
-    this.panNode.connect(this.audioContext.destination);
-
-    this.visualizer.playVisualizer(this.audioContext, this.panNode);
     this.audio.play();
   }
 
@@ -70,6 +91,18 @@ class Player extends HTMLElement {
   handleBalanceChange(event) {
     this.panNode.pan.value = event.detail.balance;
     this.audio.balance = event.detail.balance;
+  }
+
+  handleEqualizerChange(event) {
+    // Vérifier si event.detail est défini
+    if (event.detail) {
+      const { bass, mid, treble } = event.detail;
+
+      // Ajuster les valeurs des filtres d'égalisation
+      this.bassFilter.gain.value = bass;
+      this.midFilter.gain.value = mid;
+      this.trebleFilter.gain.value = treble;
+    }
   }
 
   render() {
@@ -83,7 +116,7 @@ class Player extends HTMLElement {
         </div>
         <div id="visualizer">
           <app-visualizer></app-visualizer>
-          <app-equalizer></app-equalizer>
+          <app-equalizer id="equalizer"></app-equalizer>
         </div>
     `;
   }

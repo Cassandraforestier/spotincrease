@@ -13,6 +13,21 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
 }
+#visualizer {
+display: flex;
+align-items: center;
+
+}
+#equalizer {
+  width: 100%;
+  min-height: 100px;
+  min-width: 300px;
+  background-color: #be8fe8;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  padding: 2em;
+}
 #currentTrack {
   padding-left: 2em;
   display: flex;

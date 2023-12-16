@@ -1,3 +1,21 @@
 * {
     color: #fff;
 }
+  .control-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+            }
+
+.bar {
+    flex: 1;
+    background-color: #3498db;
+    margin: 0 2px;
+    border-radius: 2px;
+    min-height: 10px;
+}
+            
+#panning-control {
+    width: 100%;
+}

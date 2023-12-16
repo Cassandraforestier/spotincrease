@@ -23,7 +23,6 @@ class Visualizer extends HTMLElement {
         height: 600,
       }
     );
-    console.log("visualizer", this.visualizer);
     const presets = butterchurnPresets.getPresets();
     const preset =
       presets["Flexi, martin + geiss - dedicated to the sherwin maxawow"];
