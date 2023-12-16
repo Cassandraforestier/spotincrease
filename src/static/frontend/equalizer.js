@@ -5,7 +5,8 @@ class Equalizer extends HTMLElement {
         this.bassControl = null;
         this.midControl = null;
         this.trebleControl = null;
-        this.preampControl = null;
+        this.panningControl = null;
+        this.panningValue = null;
     }
 
     connectedCallback() {

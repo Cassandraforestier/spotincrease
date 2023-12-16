@@ -67,6 +67,12 @@ class Player extends HTMLElement {
       this.trebleFilter.type = "highshelf";
       this.trebleFilter.frequency.value = 2600;
 
+      // Créer un noeud pan
+      this.panNode = this.audioContext.createStereoPanner();
+
+      // Connecter les nœuds audio
+      this.audioElement.connect(this.panNode);
+      this.panNode.connect(this.audioContext.destination);
       // Connecter les filtres d'égalisation à la destination audio
       this.bassFilter.connect(this.audioContext.destination);
       this.midFilter.connect(this.audioContext.destination);
