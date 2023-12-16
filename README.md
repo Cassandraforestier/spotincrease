@@ -65,7 +65,7 @@ SpotIncrease is a web application that lets users create and enjoy custom playli
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=Spotincrease)
+![App Screenshot](./doc/webcomponent.drawio.png)
 
 ## License
 This project is licensed under the ISC License.

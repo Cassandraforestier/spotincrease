@@ -19,7 +19,7 @@ class Playlist extends HTMLElement {
   loadPlaylist() {
     this.playlist = [
       "musics/Ultimate-Metal.mp3",
-      "musics/Giga-Metal.mp3",
+      "musics/Giga-metal.mp3",
       "musics/In-Dreams-Of-Darkness.mp3",
       "musics/metal-dark-matter.mp3",
       "musics/deadite-ash-vs-evil-dead-song.mp3",
