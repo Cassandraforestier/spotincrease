@@ -63,7 +63,7 @@ SpotIncrease is a web application that lets users create and enjoy custom playli
 - `static/images`: Folder for storing image assets.
 - `server.js`: Express server setup and configuration.
 
-## Screenshots
+### More explainations about Project structure 
 
 ![App Screenshot](./doc/webcomponent.drawio.png)
 

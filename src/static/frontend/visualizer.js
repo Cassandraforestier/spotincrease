@@ -15,6 +15,10 @@ class Visualizer extends HTMLElement {
   playVisualizer(audioContext, panNode) {
     this.placeholderImage.style.display = "none";
     this.canvas.style.display = "block";
+    const overlayText = this.shadow.querySelector(".overlay-text");
+    if (overlayText) {
+      overlayText.remove();
+    }
     this.visualizer = butterchurn.default.createVisualizer(
       audioContext,
       this.canvas,
@@ -44,8 +48,11 @@ class Visualizer extends HTMLElement {
           @import "visualizer.css";
         </style>
         <div id="visualizer-container">
-            <img src="images/music-150x150.png"width='400' height='300' alt="Music Image" />
-            <canvas id="canvas"  width='400' height='300'></canvas>
+          <div class="image-container">
+              <img src="images/music-150x150.png"width='400' height='300' alt="Music Image" />
+              <div class="overlay-text">Lancez une musique !</div>
+          </div>
+          <canvas id="canvas"  width='400' height='300'></canvas>
         </div>        
     `;
   }

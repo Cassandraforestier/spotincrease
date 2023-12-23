@@ -8,7 +8,7 @@
   left: 0;
   display: flex;
   flex-direction: column-reverse;
-  background-color: #be8fe8;
+  background-color: #2B2B2A;
   color: black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
@@ -22,7 +22,8 @@ align-items: center;
   width: 100%;
   min-height: 100px;
   min-width: 300px;
-  background-color: #be8fe8;
+  background-color: #2B2B2A;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
@@ -41,38 +42,70 @@ align-items: center;
   border-radius: 50%;
   margin-right: 1em;
 }
+
+#currentTrack {
+  color: white;
+  margin-bottom: 1em;
+}
 audio {
   width: 100%;
 }
 audio::-webkit-media-controls-panel {
-  background-color: #be8fe8;
+  background-color: #2B2B2A;
 }
 /* Styles personnalisés pour les boutons et la timeline */
 audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-pause-button,
-audio::-webkit-media-controls-timeline {
-  color: white;
+audio::-webkit-media-controls-pause-button {
+  background-color: #BB8DE4;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+audio::-webkit-media-controls-mute-button  {
+  background-color: #BB8DE4;
+  border-radius: 50%;
 }
 
 /* Style pour le temps */
-/* audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
-  color: white;
-} */
+  color: #BB8DE4;
+}
 
 /* Style pour le volume */
 audio::-webkit-media-controls-mute-button,
 audio::-webkit-media-controls-volume-slider-container {
-  color: white;
+  color: #BB8DE4;
 }
 
-/* Style pour la barre de progression (timeline) */
-/* audio::-webkit-media-controls-timeline {
-  background-color: white;
-  border-radius: 0; /* Supprimer le border-radius */
+audio::-webkit-media-controls-current-time-display, video::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display, video::-webkit-media-controls-time-remaining-display {
+    -webkit-appearance: media-current-time-display;
+    -webkit-user-select: none;
+    flex: none;
+    display: flex;
+    border: none;
+    cursor: default;
+    height: 30px;
+    margin: 0 9px 0 0;
+    padding: 0;
+    line-height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    color: #BB8DE4;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0;
+    text-shadow: none;
+    text-decoration: none;
+}
+
+
 
 /* Style pour les boutons en état désactivé (comme le bouton de volume lorsque muet) */
 audio::-webkit-media-controls-mute-button:disabled,
 audio::-webkit-media-controls-volume-slider-container:disabled {
-  color: white;
+  color: #BB8DE4;
 }

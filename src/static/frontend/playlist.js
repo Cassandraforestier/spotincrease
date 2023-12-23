@@ -14,7 +14,73 @@ class Playlist extends HTMLElement {
     this.playlistElement = this.shadow.getElementById("playlist");
 
     this.loadPlaylist();
+
+    // événement pour le bouton de lecture aléatoire
+    const randomButton = this.shadow.getElementById("randomButton");
+    randomButton.addEventListener("click", this.playRandomTrack.bind(this));
+
+    // Ajoutez des événements pour les boutons "previous" et "next"
+    const previousButton = this.shadow.getElementById("previousButton");
+    previousButton.addEventListener("click", this.playPreviousTrack.bind(this));
+
+    const nextButton = this.shadow.getElementById("nextButton");
+    nextButton.addEventListener("click", this.playNextTrack.bind(this));
   }
+
+  playPreviousTrack() {
+    this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length;
+    this.playTrackAtIndex();
+  }
+
+  playNextTrack() {
+    this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length;
+    this.playTrackAtIndex();
+  }
+
+  playTrackAtIndex() {
+    const selectedListItem = this.playlistElement.children[this.currentTrackIndex];
+
+    this.playlistElement.querySelectorAll('li').forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    selectedListItem.classList.add('active');
+
+    const selectedTrack = this.playlist[this.currentTrackIndex];
+
+    this.dispatchEvent(
+      new CustomEvent("loadTrack", {
+        detail: {
+          track: selectedTrack,
+        },
+        bubbles: true,
+      })
+    );
+  }
+
+  playRandomTrack() {
+    const randomIndex = Math.floor(Math.random() * this.playlist.length);
+    this.currentTrackIndex = randomIndex;
+    const randomTrack = this.playlist[this.currentTrackIndex];
+
+    this.playlistElement.querySelectorAll('li').forEach((item) => {
+      item.classList.remove('active');
+    });
+
+    const randomListItem = this.playlistElement.children[randomIndex];
+    randomListItem.classList.add('active');
+
+    // événement pour charger et jouer la piste aléatoire
+    this.dispatchEvent(
+      new CustomEvent("loadTrack", {
+        detail: {
+          track: randomTrack,
+        },
+        bubbles: true,
+      })
+    );
+  }
+
 
   loadPlaylist() {
     this.playlist = [
@@ -25,6 +91,10 @@ class Playlist extends HTMLElement {
       "musics/deadite-ash-vs-evil-dead-song.mp3",
       "musics/aggressive-metal-sinister.mp3",
       "musics/frantic.mp3",
+      "musics/might-amp-magic.mp3",
+      "musics/rammstein-style-metal.mp3",
+      "musics/woods-of-imagination.mp3",
+      "musics/workout-metal-sport.mp3",
     ];
     let activeListItem = null;
     this.playlist.forEach((track, index) => {
@@ -74,8 +144,15 @@ class Playlist extends HTMLElement {
           @import "playlist.css";
         </style>
         <div id="playlist-container">
-        <h2>Playlist</h2>
-        <ul id="playlist"></ul>
+          <div id="playlist-header">
+            <h2>Playlist</h2>
+            <div id="playlist-header-buttons">
+              <img  id="previousButton" src="images/previous.png">
+              <img id="randomButton" src="images/random.png">
+              <img id="nextButton" src="images/next.png">
+            </div>
+          </div>
+          <ul id="playlist"></ul>
         </div>        
     `;
   }

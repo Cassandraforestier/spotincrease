@@ -14,10 +14,9 @@ class Player extends HTMLElement {
     this.playerRef = this.shadow.querySelector("#player");
     this.visualizer = this.shadow.querySelector("app-visualizer");
 
-
-
     this.equalizerRef.addEventListener("equalizerChange", this.handleEqualizerChange.bind(this));
     this.equalizerRef.addEventListener("balanceChange", this.handleBalanceChange.bind(this));
+
   }
 
   setTrack(track) {
@@ -92,6 +91,7 @@ class Player extends HTMLElement {
 
   stop() {
     this.audio.pause();
+    this.visualizer.stopVisualizer();
   }
 
   handleBalanceChange(event) {
@@ -100,7 +100,6 @@ class Player extends HTMLElement {
   }
 
   handleEqualizerChange(event) {
-    // Vérifier si event.detail est défini
     if (event.detail) {
       const { bass, mid, treble } = event.detail;
 

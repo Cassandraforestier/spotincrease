@@ -3,26 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="
-https://cdn.jsdelivr.net/npm/butterchurn@2.6.7/lib/butterchurn.min.js
-"></script>
-    <script src="
-https://cdn.jsdelivr.net/npm/butterchurn-presets@2.4.7/lib/butterchurnPresets.min.js
-"></script>
+     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <title>Spotincrease</title>
+    <script src="https://cdn.jsdelivr.net/npm/butterchurn@2.6.7/lib/butterchurn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/butterchurn-presets@2.4.7/lib/butterchurnPresets.min.js"></script>
     <style>
       body {
-        background-color: #530e8c;
+        background-color: #070130;
         font-family: sans-serif;
+        margin: 0;
       }
-      h1 {
-        text-align: center;
-        color: white;
+      img {
+        margin-left: 10px;
+        height: 100px;
+      }
+      #header {
+        display: flex;
+        padding-left: 2em;
+        background-color: #050027; 
+        margin-bottom: 1em;;
+        box-shadow: 0px 0px 15px 0px rgb(32, 17, 91,1);
       }
     </style>
   </head>
   <body>
-    <h1>Spotincrease</h1>
+    <div id="header">
+    <img src="./images/spotincrease.png" alt="logo spotincrease"/>
+    </div>
     <app-container></app-container>
 
     <script type="module" src="container.js"></script>
