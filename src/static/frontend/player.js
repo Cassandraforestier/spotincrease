@@ -17,7 +17,15 @@ class Player extends HTMLElement {
     this.equalizerRef.addEventListener("equalizerChange", this.handleEqualizerChange.bind(this));
     this.equalizerRef.addEventListener("balanceChange", this.handleBalanceChange.bind(this));
 
+    this.audio.addEventListener("ended", () => {
+      this.dispatchEvent(
+        new CustomEvent("playNextTrack", {
+          bubbles: true,
+        })
+      );
+    });
   }
+
 
   setTrack(track) {
     // création de l'élément img avec le chemin de l'image
@@ -101,12 +109,14 @@ class Player extends HTMLElement {
 
   handleEqualizerChange(event) {
     if (event.detail) {
-      const { bass, mid, treble } = event.detail;
-
-      // Ajuster les valeurs des filtres d'égalisation
-      this.bassFilter.gain.value = bass;
-      this.midFilter.gain.value = mid;
-      this.trebleFilter.gain.value = treble;
+      const { "bass-value": bass, "mid-value": mid, "treble-value": treble } = event.detail;
+      if (bass !== undefined) {
+        this.bassFilter.gain.value = bass;
+      } else if (mid !== undefined) {
+        this.midFilter.gain.value = mid;
+      } else if (treble !== undefined) {
+        this.trebleFilter.gain.value = treble;
+      }
     }
   }
 

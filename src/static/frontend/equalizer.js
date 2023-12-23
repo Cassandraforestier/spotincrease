@@ -89,7 +89,7 @@ class Equalizer extends HTMLElement {
           </div>
         </div>
       </div>
-      <div>
+      <div id="balance-container">
         <span>Balance</span>
         <input id="panning-control" type="range" min="-1" max="1" step="0.1" value="0" />
         <span id="panning-value">0</span>

@@ -3,6 +3,7 @@ class Container extends HTMLElement {
   containerRef;
   playerRef;
   equalizerRef;
+  playlistRef;
 
   constructor() {
     super();
@@ -14,14 +15,17 @@ class Container extends HTMLElement {
     this.render();
     this.containerRef = this.shadow.querySelector("#container");
     this.playerRef = this.shadow.querySelector("app-player");
+    this.playlistRef = this.shadow.querySelector("app-playlist");
 
     this.setupListeners();
   }
 
   setupListeners() {
     this.containerRef.addEventListener("loadTrack", (e) => {
-      // appelle le setter de player qui va mettre à jour le titre et lancer la lecture
       this.playerRef.setTrack(e.detail.track);
+    });
+    this.containerRef.addEventListener("playNextTrack", (e) => {
+      this.playlistRef.playNextTrack();
     });
   }
 

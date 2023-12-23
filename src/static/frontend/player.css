@@ -102,10 +102,36 @@ audio::-webkit-media-controls-time-remaining-display, video::-webkit-media-contr
     text-decoration: none;
 }
 
-
-
 /* Style pour les boutons en état désactivé (comme le bouton de volume lorsque muet) */
 audio::-webkit-media-controls-mute-button:disabled,
 audio::-webkit-media-controls-volume-slider-container:disabled {
   color: #BB8DE4;
+}
+
+@media screen and (max-width: 768px) {
+  #visualizer {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    margin-top: 2em;
+  }
+  #equalizer {
+    margin-left: 0;
+    margin-bottom: 0;
+    width: fit-content;
+    margin-bottom: 100px;
+    margin-top: 2em;
+    min-width: none;
+  }
+  #player {
+    z-index: 1;
+    width: fit-content;
+  }
+  audio {
+    width: revert;
+  }
+  #currentTrack {
+    padding-left: 1em;
+  }
 }

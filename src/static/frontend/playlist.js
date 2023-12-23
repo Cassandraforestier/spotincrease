@@ -27,6 +27,7 @@ class Playlist extends HTMLElement {
     nextButton.addEventListener("click", this.playNextTrack.bind(this));
   }
 
+
   playPreviousTrack() {
     this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length;
     this.playTrackAtIndex();
