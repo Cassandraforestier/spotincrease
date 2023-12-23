@@ -48,7 +48,7 @@ Spotincrease is a web application that lets users create and enjoy custom playli
 - *Play*, *pause*, or *stop* the track. 
 - Adjust the *equalizer* settings.
 - You can also *randomly play* a track, set the *previous* or the *next* track of the playlist.
-- *Automatically play* the previous track at the end of the current one.
+- *Automatically play* the next track at the end of the current one.
 4. ***Enjoy*** the visualizer:
 - Watch it come to life as you listen to your favorite music.
 
