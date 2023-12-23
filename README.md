@@ -1,6 +1,6 @@
-# SpotIncrease
+# Spotincrease
 
-SpotIncrease is a web application that lets users create and enjoy custom playlists with an interactive audio player. The application features a modern and intuitive user interface, complete with an equalizer for adjusting audio settings, a visualizer for a captivating audio-visual experience, and a playlist manager for organizing and selecting tracks.
+Spotincrease is a web application that lets users create and enjoy custom playlists with an interactive audio player. The application features a modern and intuitive user interface, complete with an equalizer for adjusting audio settings, a visualizer for a captivating audio-visual experience, and a playlist manager for organizing and selecting tracks.
 
 ## Online Website
 - Here is the link for the online Spotincrease project :
@@ -47,6 +47,8 @@ SpotIncrease is a web application that lets users create and enjoy custom playli
 3. ***Use*** the audio player controls:
 - *Play*, *pause*, or *stop* the track. 
 - Adjust the *equalizer* settings.
+- You can also *randomly play* a track, set the *previous* or the *next* track of the playlist.
+- *Automatically play* the previous track at the end of the current one.
 4. ***Enjoy*** the visualizer:
 - Watch it come to life as you listen to your favorite music.
 
